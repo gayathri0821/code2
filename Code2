@@ -1,0 +1,762 @@
+1. Design and Implement the Student Class
+Write program to have the Student class in Student.java and a tester program at StudentTester.java.
+Write a constructor of Student class to accept First Name, Last Name, Grade (Class in which the student enrols like 1, 2, 3 etc)
+Create two instances of Student Class in the Tester Program with First Name, Last Name and Grade. Make a report displaying the rank (decending) along with the names (First Name & Last Name Together)
+Use Collection
+Program:
+public class Student implements Comparable<Student> {
+      // Declaring the variables of student class
+      String firstname;
+      String lastname;
+      int grade;
+ 
+      // constructor of student class using the fields
+      public Student(String firstname, String lastname, int grade) {
+            super();
+            this.firstname = firstname;
+            this.lastname = lastname;
+            this.grade = grade;
+      }
+ 
+      // getters and setters for the constructor
+      public String getFirstname() {
+            return firstname;
+      }
+ 
+      public void setFirstname(String firstname) {
+            this.firstname = firstname;
+      }
+ 
+      public String getLastname() {
+            return lastname;
+      }
+ 
+      public void setLastname(String lastname) {
+            this.lastname = lastname;
+      }
+ 
+      public int getGrade() {
+            return grade;
+      }
+ 
+      public void setGrade(char grade) {
+            this.grade = grade;
+      }
+ 
+      @Override
+      public int compareTo(Student o) {
+            if (this.grade < o.grade)
+                  return 1;
+            else if (this.grade > o.grade)
+                  return -1;
+            else
+                  return 0;
+      } 
+}
+
+import java.util.*;
+ 
+public class StudentTester {
+      public static void main(String[] args) {
+            Scanner in = new Scanner(System.in);  // Scanner class
+            // declaring variables
+            String firstname;
+            String lastname;
+            int grade;
+            // reading num
+            System.out.println("Number of Students :  ");
+            int num = in.nextInt();
+            // creating arraylist
+            ArrayList<Student> al = new ArrayList<Student>();
+            for (int i = 0; i < num; i++) {
+                  // entering the first name ,last name, grade
+                  System.out.println("Enter the FirstName of the Student  :  ");
+                  firstname = in.next();
+                  System.out.println("Enter the LastName of the Student  :  ");
+                  lastname = in.next();
+                  System.out.println("Enter the Grade of the Student  :  ");
+                  grade = in.nextInt();
+                  // student class constructor with parameters
+                  Student stu = new Student(firstname, lastname, grade);
+                  // adding elements into list
+                  al.add(stu);
+            }
+            al.sort(null);
+            // for loop for printing the elements in the list
+            for (Student Student : al) {
+                  System.out.println(Student.grade + "  " + Student.firstname + " " + Student.lastname);
+            }
+            in.close();
+      }
+}
+
+Output:
+ 
+
+2. Create an Abstract Class Shape (to define Geometrical Shapes) Add abstract methods – getPerimeter, getArea  to abstract class.
+Create Square, Pentagon, Circle
+Program:
+//Creating abstract class of shape
+abstract class Shape {
+	// Creating abstract method of getPerimeter
+	public abstract void getPerimeter();
+
+	// Creating abstract method of getArea
+	public abstract void getArea();
+}
+
+// Creating a class Square and extending the shape class
+class Square extends Shape {
+	//variable declation
+	int side = 5;
+	int perimeter;
+	float area;
+	@Override
+	// Implementing abstract method getPerimeter
+	public void getPerimeter() {
+		//calculating perimeter of a square
+		perimeter = 4 * side * side;
+		System.out.println("perimeter of a square is:" + perimeter);
+	}
+
+	@Override
+	// Implementing abstract method getArea
+	public void getArea() {
+		//calculating area of a square
+		area = (float) side * side;
+		System.out.println("Area of a square is:" + area);
+	}
+
+}
+
+// Creating a class pentagon and extending the shape class
+class Pentagon extends Shape {
+	// variable declaration
+	int perimeter;
+	float area;
+	int breadth = 5;
+	int height = 5;
+
+	@Override
+	// Implementing abstract method getPerimeter
+	public void getPerimeter() {
+
+		int side = 5;
+		//calculating perimeter of a pentagon
+		perimeter = 5 * side;
+		System.out.println("perimeter of a pentagon is:" + perimeter);
+	}
+
+	@Override
+	// Implementing abstract method getArea
+	public void getArea() {
+		//calculating area of a pentagon
+		area = (5 / 2) * breadth * height;
+		System.out.println("Area of a pentagon is:" + area);
+	}
+}
+
+// Creating a class circle and extending the shape class
+class Circle extends Shape {
+	// variable declaration
+	int radius = 5;
+	float perimeter;
+	float area;
+
+	@Override
+	// Implementing abstract method getPerimeter
+	public void getPerimeter() {
+		//calculating Perimeter of a circle
+		perimeter = (float) (2 * 3.14 * radius);
+		System.out.println("perimeter of a circle is:" + perimeter);
+	}
+
+	@Override
+	// Implementing abstract method getArea
+	public void getArea() {
+		//calculating Area of a circle
+		area = (float) 3.14 * radius * radius;
+		System.out.println("Area of a circle is:" + area);
+
+	}
+}
+
+public class PerimeterArea {
+	public static void main(String[] args) {
+		// creating object for the square class
+		Shape s = new Square();
+		// Calling square class methods by using object of that class
+		s.getPerimeter();
+		s.getArea();
+		// creating object for the pentagon class
+		Shape p = new Pentagon();
+		// Calling pentagon class methods by using object of that class
+		p.getPerimeter();
+		p.getArea();
+		// creating object for the circle class
+		Shape c = new Circle();
+		// Calling circle class methods by using object of that class
+		c.getPerimeter();
+		c.getArea();
+	}
+}
+
+Output:
+ 
+
+3.  Implement a sequential search function that takes an ArrayList<Integer> as a parameter.
+PROGRAM:
+import java.util.*;
+public class Sequential {
+	public static void main(String[] args) {
+		// Creating a arraylist 
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		int size;
+		Scanner in = new Scanner(System.in);  // Sacnner class
+		System.out.println("Enter the number of Elements");
+		size = in.nextInt();
+		System.out.println("Enter the Elements:");
+		// Taking the elements into an arraylist
+		for (int i = 0; i < size; i++) {
+			al.add(in.nextInt());
+
+		}
+		System.out.println("Elements are");
+		//Enhanced for printing the list of elements
+		for (Integer sequential : al) {
+			System.out.println(sequential);
+		}
+		int search;
+		System.out.println("Enter the Element to Search");
+		search = in.nextInt();
+		int count=0;
+		for (Integer sequential : al) {
+			// Checking condition for searching the element
+			if (sequential.equals(search)) {
+				System.out.println(sequential + " Element Found");
+				count++;
+			}
+		}
+		if(count==0)
+		{
+			System.out.println(search+" Element Not Found");
+		}
+		in.close();
+	}
+}
+Output:
+  
+
+
+
+
+
+
+4.  Create a class fior Employee and store Employee ID for 20 Employee and sort in desecnding order.
+Class Name:- Employee
+Method Name:- Input( For Input Employee ID)
+Method Name:- Display for Show details for Employee.
+Program:
+import java.util.*;
+public class Employee {
+	public static void main(String[] args) {
+		EmployeeDetails ed = new EmployeeDetails();
+		// calling input method from employee details class
+		ed.input();
+		// calling display method from employee details class
+		ed.display();
+	}
+}
+class EmployeeDetails implements Comparable<EmployeeDetails> {
+	int empid;
+	// creating arraylist with employee details type
+	ArrayList<EmployeeDetails> al = new ArrayList<EmployeeDetails>();
+	public EmployeeDetails() {
+	}
+	public void input() {
+		Scanner in = new Scanner(System.in);  // Scanner classs
+		int eid;
+		System.out.println("Enter the number of Employee's");
+		int num = in.nextInt();
+		System.out.println("Enter the Employee ID's of Employees");
+		for (int i = 0; i < num; i++) {
+			eid = in.nextInt();
+			EmployeeDetails ed = new EmployeeDetails(eid);
+			al.add(ed);
+		}
+		al.sort(null);
+		in.close();  // closing Scanner Class
+	}
+	// creating constructor for employee details class
+	public EmployeeDetails(int empid) {
+		super();
+		this.empid = empid;
+
+	}
+	public void display() {
+
+		for (EmployeeDetails employeeDetails : al) {
+			System.out.print(employeeDetails.empid+"  ");
+		}
+	}
+	@Override // compares and sort the details in descending order
+	public int compareTo(EmployeeDetails o) {
+		if (this.empid < o.empid)
+			return 1;
+		else if (this.empid > o.empid)
+			return -1;
+		else
+			return 0;
+	}
+}
+Output:
+ 
+5. Modify the sequential search and binary search functions to return the number of comparisons made in each search, which one is more efficient? Test the functions on arrays
+Program:
+import java.util.*;
+
+public class BinarySearch {
+
+	public static void main(String args[]) {
+		Scanner in = new Scanner(System.in);
+		int size, temp;
+		System.out.println("Enter the size of Array");
+		size = in.nextInt();
+		int[] arr = new int[size];
+		System.out.println("Enter Elements into Array");
+		// Taking array elements
+		for (int i = 0; i < size; i++) {
+			arr[i] = in.nextInt();
+		}
+		// sorting the given elements
+		for (int i = 0; i < size - 1; i++) {
+			for (int j = i + 1; j < size; j++) {
+				if (arr[i] > arr[j]) {
+					// Swaping the elements
+					temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+		// printing the elements in Sorted order
+		for (int k = 0; k < size; k++) { 
+			System.out.println(arr[k]);
+		}
+		// binary search
+		int first, last, middle, search;
+		System.out.println("Enter The Element to Search");
+		search = in.nextInt();
+		first = 0;
+		last = size - 1;
+		middle = (first + last) / 2;
+		while (first <= last) {
+			if (arr[middle] < search)
+				first = middle + 1;
+			else if (arr[middle] == search) {
+				System.out.println(search + " is Found");
+				break;
+			} else
+				last = middle - 1;
+
+			middle = (first + last) / 2;
+		}
+		if (first > last)
+			System.out.println(search+" is Not found! ");
+		in.close();
+	}
+}
+Output:
+  
+
+6.  Create an array for size of 10 and insert Car Number and create two another array and put even and odd car number in respective different arrays without any index gapping
+Program:
+import java.util.*;
+public class CarNumber {
+	public static void main(String args[]) {
+		// Creating an array to store the car number
+		int[] arr = new int[10];
+		Scanner in = new Scanner(System.in);
+		// Reading elements into array
+		System.out.println("Enter the Car Number");
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = in.nextInt();
+		}
+		System.out.println("Car Number");
+		for (int i = 0; i < arr.length; i++) {
+			// Printing the car number
+			System.out.print(arr[i]);
+		}
+
+		// Creating array with name even to store the even numbers from car
+		// number
+		int[] even = new int[arr.length];
+
+		// Creating array with name odd to store the odd numbers from car number
+		int[] odd = new int[arr.length];
+		System.out.println(" ");
+		System.out.println("Even Car Numbers is  : ");
+		for (int i = 0; i < arr.length; i++) {
+			// Printing only the even numbers from car number
+			if (arr[i] % 2 == 0) {
+				even[i] = arr[i];
+				System.out.print(even[i]);
+			}
+		}
+		System.out.println(" ");
+		System.out.println("Odd Car Numbers is  : ");
+		for (int i = 0; i < arr.length; i++) {
+			// Printing only the odd numbers from car number
+			if (arr[i] % 2 != 0) {
+				odd[i] = arr[i];
+				System.out.print(odd[i]);
+			}
+		}
+		in.close();
+	}
+}
+
+Output:
+ 
+
+
+
+8. Write a program for matrix multiplication.
+Use 3X3 matrix
+Program:
+import java.util.Scanner;
+public class MatrixMultiplication {
+	// declaring variables
+	int rowsOfmatrix1;
+	int coloumnsOfMatrix1;
+	int rowsOfMatrix2;
+	int coloumnsOfMatrix2;
+	// Multiplication method
+	public void multiplication() {
+		Scanner in = new Scanner(System.in);  // Scanner class
+		System.out.println("Multiplication of Two matrices");  // Taking details of the matrix
+		System.out.println("Enter Number of Rows of First Matrix");
+		rowsOfmatrix1 = in.nextInt();
+		System.out.println("Enter Number of Columns of First Matrix");
+		coloumnsOfMatrix1 = in.nextInt();
+		System.out.println("Enter Number of Rows of Second Matrix");
+		rowsOfMatrix2 = in.nextInt();
+		System.out.println("Enter Number of Columns of Second Matrix");
+		coloumnsOfMatrix2 = in.nextInt();
+		if (coloumnsOfMatrix1 == rowsOfMatrix2) {  // if the condition is true then the only if condition executes
+
+			int array1[][] = new int[rowsOfmatrix1][coloumnsOfMatrix1];
+			int array2[][] = new int[rowsOfMatrix2][coloumnsOfMatrix2];
+			int result[][] = new int[rowsOfmatrix1][coloumnsOfMatrix2];
+			int sum = 0;
+			System.out.println("Enter Values for First Matrix");  // taking values for the one matrix
+			for (int outer = 0; outer < rowsOfmatrix1; outer++) {
+				for (int inner = 0; inner < coloumnsOfMatrix1; inner++) {
+					array1[outer][inner] = in.nextInt();
+				}
+			}
+			System.out.println("Enter Values for Second Matrix");  // taking values for the second matrix
+			for (int outer = 0; outer < rowsOfMatrix2; outer++) {
+				for (int inner = 0; inner < coloumnsOfMatrix2; inner++) {
+					array2[outer][inner] = in.nextInt();
+				}
+			}
+			System.out.println("Multiplication of Matrix First and Second is  :  ");  // multiplying matrices
+			for (int outer = 0; outer < rowsOfmatrix1; outer++) {
+				// calculating multiplication of matrices
+				for (int inner = 0; inner < coloumnsOfMatrix2; inner++) {
+					for (int deeper = 0; deeper < rowsOfMatrix2; deeper++) {
+						sum = sum + (array1[inner][deeper] * array2[deeper][inner]);
+					}
+					result[outer][inner] = sum;
+				}
+			}
+			for (int outer = 0; outer < rowsOfmatrix1; outer++) {  // printing output matrix
+				for (int inner = 0; inner < coloumnsOfMatrix2; inner++) {
+					System.out.print(result[outer][inner] + " ");
+				}
+				System.out.println();
+			}
+		} else {
+			System.out.println("Matrix Multiplication is Not Possible");
+		}
+		in.close();  // scanner close
+	}
+	public static void main(String[] args) {
+		MatrixMultiplication matrix = new MatrixMultiplication();  // object creation
+		matrix.multiplication();  // method calling
+	}
+}
+
+Output:
+ 
+8. What is the widest valid returnType .
+returnType methodA(byte x, double y) 
+    { 
+        return x / y * 2; 
+    } 
+1.	How to return this statement return long type of value.
+Answer:  Return Type must be Double. Because double is bigger than byte.
+2.       Resolve this problem with the help of code
+Answer:
+double methodA(byte x, double y) 
+    { 
+        return x / y * 2; 
+    } 
+9. Write an ExpandingArray class that stores an array as an instance variable and supports the methods 
+• public void add(int index, int element)
+• public void add(int element)
+• public int remove(int index)
+• public int size()
+• public String toString()
+Program:
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class ExpandingArray {
+	// dynamic array to store elements
+	ArrayList<Integer> array = new ArrayList<>();
+
+	// adding elements
+	public void add(int index, int element) {
+		array.add(index, element);
+	}
+
+	// adding elements in the respective index
+	public void add(int element) {
+		array.add(element);
+	}
+
+	// removing element from the array
+	public int remove(int index) {
+		return array.remove(index);
+	}
+
+	// getting the size of the array
+	public int size() {
+		return array.size();
+	}
+
+	// display array elements
+	public String toString() {
+		System.out.print("Array Elements: ");
+		for (Integer temp : array) {
+			System.out.print(temp + " ");
+		}
+		return "";
+	}
+
+	// main method
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);  //Scanner class
+		int element, index, choice = 0;
+		ExpandingArray exp_array = new ExpandingArray();  // Object creation
+		try {
+			do {
+				// menu displayed in the console
+				System.out.println("1.Add a element");
+				System.out.println("2.Insert an element");
+				System.out.println("3.Remove element");
+				System.out.println("4.Get size");
+				System.out.println("5.Display the array");
+				System.out.println("6.Exit");
+				System.out.println();
+				System.out.println("Enter your choice: ");
+				choice = in.nextInt();
+				// switching to the required operation
+				switch (choice) {
+				case 1:
+					// adding element to the array
+					System.out.print("Enter the Element to Add: ");
+					element = in.nextInt();
+					exp_array.add(element);
+					System.out.println(element + " is added to the array");
+					System.out.println();
+					break;
+				case 2:
+					// inserting element to the array 
+					System.out.print("Enter the Element to Insert: ");
+					element = in.nextInt();
+					System.out.print("Enter the Index: ");
+					index = in.nextInt();
+					if (index <= exp_array.size()) {
+						exp_array.add(index, element);
+						System.out.println(+element + " is added to the array at the index of " + index);
+					} else {
+						System.out.println("Invalid Index. Maximum value can be given: " + exp_array.size());
+					}
+					System.out.println();
+					break;
+				case 3:
+					// Removes the elemement from the array
+					if (exp_array.array.isEmpty() == false) {
+						System.out.println("Enter an Index to Remove the Element: ");
+						index = in.nextInt();
+						System.out.println("Element Removed from the Index" + index + ": " + exp_array.remove(index));
+					} else {
+						System.out.println("To use this Function, First you have to add an Element");
+					}
+					System.out.println();
+					break;
+				case 4:
+					// Display the size of the array
+					System.out.println("Size of the Array: " + exp_array.size());
+					System.out.println();
+					break;
+				case 5:
+					// prints the Array elements in the console
+					if (exp_array.array.isEmpty() == false) {
+						System.out.println(exp_array);
+					} else {
+						System.out.println("To use this Function, First you have to Add the Element");
+					}
+					System.out.println();
+					break;
+				case 6:
+					// existed from the operation 
+					System.out.println("Successfully Exited...Thank you");
+					System.out.println();
+					break;
+				default:
+					System.out.println("Invalid choice");
+				}
+
+			} while (choice != 6);
+			System.out.println(exp_array);
+		}
+		// handling exceptions
+		catch (IndexOutOfBoundsException exp) {
+			System.out.println("Invalid Index");
+		} catch (InputMismatchException exp) {
+			System.out.println("Invalid Input Format");
+		} catch (Exception exp) {
+			System.out.println(exp);
+		}
+		in.close();
+	}
+}
+
+Output:
+   
+
+10.
+  
+Answers:
+1.Not Valid declaration.
+	2. The program gives compilation error because Variables are not initialized.
+
+
+
+11.
+ 
+Answers:
+1.	Syntactically it is correct.
+2.	It prints a line.
+3.	It is platform Independent.
+
+
+
+
+
+
+
+
+12.
+ 
+Answer:
+Infinite loop
+
+
+
+
+
+
+
+
+
+
+13.
+ 
+Answer:
+1.It shows error at finally. Because in finally keyword ‘F’ must be in Lower case  
+2.Replace Finally keyword to finally
+
+
+
+
+
+
+
+
+
+
+14.
+ 
+Answers:
+1.	No. Syntax is not correct.
+2.	It prints noting
+3.	IOException
+4.
+import java.io.IOException;
+
+class San
+{
+  San()throws IOException
+  {
+  }
+}
+class Foundry extends San
+{
+       Foundry()throws IOException
+    {
+    }
+     public static void main(String[] args)
+      {
+      }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15.
+ 
+Answers:
+1.It gives compilation error
+
+2.
+public class Test {
+    static int x = 11;
+    private int y = 33;
+    public void method1(int x) {
+        Test t = new Test();
+        this.x = 22;
+        y = 44;    
+        System.out.println("Test.x: " + Test.x);
+        System.out.println("t.x: " + t.x);
+        System.out.println("t.y: " + t.y);
+        System.out.println("y: " + y);
+    }    
+    public static void main(String args[]) {
+        Test t = new Test();
+        t.method1(5);
+    }
+}
